@@ -1,1 +1,15 @@
+                                            What Is an API? A Beginner-Friendly Guide to APIs and REST APIs
+What is an API
+API stands for Application Programming Interface. It is a mechanism that allows two different digital apps to interact with each other.It gives
+client a standard way to request and share information safely, without needing to know its internal implementation. 
+
+What is an API in programming?
+In programming API acts as a universal abstraction layer that and contract that enables code reuse, modular design, and secure system 
+communication.
+Without APIs, engineers have to build every single feature, database connector, and operating system tool completely from scratch.
+
+Working of API
+
+
+
 
