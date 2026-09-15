@@ -1,5 +1,10 @@
                                         What Is an API? A Beginner-Friendly Guide to APIs and REST APIs
 INTRODUCTION:
+
+Technical level: Beginner
+Category: Technical Writing / Web Development / APIs
+Language: English
+
 Have you ever wondered about the different apps you have in your phone and about its working. For example, how a food delivery app instantly lists local restaurants, how a shopping app safely processes your payment, or how a weather app knows the exact temperature outside?
 The secret behind is revealed with a digital tool, known as API(Application Programming Interface). In simple language, we can understand API as a messenger or a waiter at restaurant:
 1. You sit at the table and look at the menu (the app screen).
@@ -12,7 +17,8 @@ An API, or the Application Programming Interface is a digital bridge that allows
 
 WHAT IS AN API?
 API stands for Application Programming Interface. It is a mechanism that allows two different digital apps to interact with each other.It gives
-client a standard way to request and share information safely, without needing to know its internal implementation. 
+client a standard way to request and share information safely, without needing to know its internal implementation (Goodwin, 2024). 
+
 
 A simplified flow looks like this:
 
@@ -161,6 +167,459 @@ json{
 }
 
 The application can then use this information to display data or perform another operation.
+
+WHAT IS A REST API?
+REST (which stands for Representational State Transfer) is simply a set of design rules or guidelines used to build modern APIs.An API that follows these rules is called a REST API or a RESTful API. It is the most popular way to design APIs because it uses standard web technology that everyone already agrees on.
+
+In a REST API, every piece of data is treated as a Resource (like a digital object or folder) and is given a unique web address.
+
+For example, if you are building an app with user accounts, a user is a resource:
+/users is the main folder containing all users.
+/users/101 is the specific file for user number 101.
+
+Instead of creating confusing custom commands, REST APIs use standard HTTP action words (Methods) to perform actions on these files. It works exactly like a digital filing cabinet:
+GET /users → List all: Show me a list of all users.
+POST /users → Create new: Add a brand-new user to the folder.
+GET /users/101 → Read one: Show me the details of just user 101.
+PUT /users/101 → Update: Edit or update user 101's information.
+DELETE /users/101 → Remove: Permanently delete user 101 from the system.
+
+REST APIs are widely used because they work well with standard web technologies and provide a familiar way to design interactions between clients and servers.
+
+COMMON HTTPs METHODS USED IN REST APIs:
+HTTP methods describe the type of operation that the client wants to perform.
+
+HTTP Method	      Common Purpose	                Example
+GET	              Retrieve data	Get               user details
+POST	            Create a resource	              Create a new user
+PUT	              Update or replace a resource	  Update user details
+PATCH	            Partially update a resource	    Update only user's email
+DELETE	          Delete a resource	              Delete a user
+
+Let's look at the most common methods in more detail.
+
+1. GET
+
+The GET method is commonly used to retrieve information from a server.
+
+For example:
+
+GET /users/101
+
+The server may return:
+
+{
+  "id": 101,
+  "name": "Rahul",
+  "email": "rahul@example.com"
+}
+
+GET requests are generally used when the client wants to read information rather than create or modify it.
+
+2. POST
+
+The POST method is commonly used to submit data to a server, often to create a new resource.
+
+For example:
+
+POST /users
+
+The request body could contain:
+
+{
+  "name": "Rahul",
+  "email": "rahul@example.com"
+}
+
+The server processes the information and may create a new user.
+
+A successful creation commonly results in a 201 Created status code.
+
+3. PUT
+
+The PUT method is commonly used to update or replace an existing resource.
+
+For example:
+
+PUT /users/101
+
+The request might contain updated information:
+
+{
+  "name": "Rahul Sharma",
+  "email": "rahul.sharma@example.com"
+}
+
+The exact behavior of PUT depends on the API design, but it is generally associated with replacing or updating a resource at a known URI.
+
+4. DELETE
+
+The DELETE method is used to request the removal of a resource.
+
+For example:
+
+DELETE /users/101
+
+If the operation is successful, the server may return a 204 No Content response.
+
+What Are HTTP Status Codes?
+
+HTTP status codes tell the client what happened after its request was processed.
+
+They are grouped into categories.
+
+Range	Category	Meaning
+1xx	Informational	Request processing information
+2xx	Success	Request was successfully processed
+3xx	Redirection	Further action may be required
+4xx	Client Error	Problem with the request
+5xx	Server Error	Server encountered a problem
+
+Some commonly encountered status codes include:
+
+Status Code	Meaning
+200 OK	Request was successful
+201 Created	Resource was successfully created
+204 No Content	Request succeeded but there is no response body
+400 Bad Request	Server could not process the request because of invalid input
+401 Unauthorized	Authentication is required or has failed
+403 Forbidden	Server understood the request but refuses to authorize it
+404 Not Found	Requested resource could not be found
+500 Internal Server Error	Server encountered an unexpected condition
+
+Understanding status codes is important when working with APIs because they provide immediate information about the result of a request.
+
+What Is JSON?
+
+JSON, or JavaScript Object Notation, is a lightweight data-interchange format commonly used to exchange structured information between applications.
+
+A JSON object may look like this:
+
+{
+  "name": "Rahul",
+  "age": 25,
+  "skills": ["Python", "SQL"]
+}
+
+Here:
+
+name is a key with a string value.
+age is a key with a numeric value.
+skills contains an array of values.
+
+JSON is popular in web APIs because it is relatively easy for humans to read and is also straightforward for software to parse.
+
+An API response may therefore look like:
+
+{
+  "id": 101,
+  "name": "Rahul",
+  "role": "Developer"
+}
+
+A client application can parse this response and use the returned information.
+
+Real-World Example of an API
+
+Let's consider a food delivery application.
+
+Suppose a user searches for restaurants that serve pizza.
+
+The application may send a request to a backend API:
+
+GET /restaurants?cuisine=pizza
+
+The server processes the request and returns restaurant information.
+
+For example:
+
+{
+  "restaurants": [
+    {
+      "name": "Pizza House",
+      "rating": 4.5
+    },
+    {
+      "name": "Italian Kitchen",
+      "rating": 4.3
+    }
+  ]
+}
+
+The application then uses this response to display the restaurants to the user.
+
+The user sees a simple list of restaurants, but behind the scenes several systems may have communicated through APIs.
+
+A simplified flow is:
+
+User
+ ↓
+Food Delivery App
+ ↓
+Restaurant API
+ ↓
+Backend Service
+ ↓
+Database
+ ↓
+API Response
+ ↓
+Food Delivery App
+ ↓
+Restaurant List
+
+This is one reason APIs are fundamental to modern applications.
+
+Making an API Request Using Python
+
+Python can be used to interact with web APIs.
+
+One commonly used library is requests.
+
+For example:
+
+import requests
+
+url = "https://api.example.com/users/101"
+
+response = requests.get(url)
+
+print(response.status_code)
+print(response.json())
+
+Let's understand what the code does.
+
+Step 1: Import the library
+import requests
+
+The requests library provides functionality for making HTTP requests in Python.
+
+Step 2: Define the API endpoint
+url = "https://api.example.com/users/101"
+
+This variable stores the URL of the API endpoint.
+
+The URL shown above is an example endpoint and is not intended to represent a live service.
+
+Step 3: Send a GET request
+response = requests.get(url)
+
+The get() method sends an HTTP GET request to the specified URL.
+
+The returned response is stored in the response variable.
+
+Step 4: Check the status code
+print(response.status_code)
+
+This displays the HTTP status code returned by the server.
+
+For example:
+
+200
+
+would generally indicate that the request was successful.
+
+Step 5: Read the JSON response
+print(response.json())
+
+If the server returns valid JSON, the json() method can parse the response into Python data structures.
+
+For example, a JSON response such as:
+
+{
+  "name": "Rahul",
+  "age": 25
+}
+
+can be accessed in Python as structured data.
+
+Note: When using a real API, always check its documentation for the correct endpoint, authentication requirements, parameters, request limits, and response format.
+
+API Authentication
+
+Many APIs do not allow unrestricted access.
+
+They may require the client to prove its identity before accessing protected resources.
+
+Common authentication approaches include:
+
+API keys
+Bearer tokens
+OAuth
+Session-based authentication
+Other authentication mechanisms
+
+For example, an API may require a token in an HTTP header:
+
+Authorization: Bearer YOUR_TOKEN
+
+The API server can then verify the token before processing the request.
+
+Authentication and authorization are important concepts when working with APIs because they help control access to protected resources.
+
+Never expose real API keys or access tokens in a public GitHub repository.
+
+API vs REST API
+
+The terms API and REST API are related but they are not interchangeable.
+
+API is a broad concept referring to an interface that allows software components to interact.
+
+REST API refers specifically to an API designed around the principles of REST.
+
+In simple terms:
+
+API
+ ├── REST API
+ ├── SOAP API
+ └── Other API approaches
+
+Therefore, every REST API is an API, but not every API is a REST API.
+
+Best Practices When Working With APIs
+
+Developers and technical teams should consider several practices when designing or consuming APIs.
+
+1. Use Clear Endpoints
+
+Endpoints should clearly represent the resources they expose.
+
+For example:
+
+/users
+/products
+/orders
+2. Use Appropriate HTTP Methods
+
+Use HTTP methods according to the intended operation.
+
+For example:
+
+GET    → Retrieve
+POST   → Create
+PUT    → Replace/Update
+DELETE → Remove
+3. Return Meaningful Status Codes
+
+Status codes should clearly communicate the result of a request.
+
+4. Validate Input
+
+Servers should validate incoming data before processing it.
+
+5. Protect Sensitive Information
+
+API keys, passwords, tokens, and other credentials should never be exposed publicly.
+
+6. Document the API
+
+Good API documentation should explain:
+
+Available endpoints
+HTTP methods
+Parameters
+Authentication
+Request examples
+Response examples
+Status codes
+Error messages
+
+Clear documentation makes APIs easier for developers to understand and integrate.
+
+Frequently Asked Questions
+What does API stand for?
+
+API stands for Application Programming Interface. It provides a defined way for software components or applications to communicate with each other.
+
+What is an API used for?
+
+APIs are used to allow applications and systems to exchange information or perform operations through defined interfaces.
+
+What is a REST API?
+
+A REST API is an API designed according to the principles of REST, an architectural style for networked applications.
+
+Is an API a programming language?
+
+No. An API is not a programming language. It is an interface that defines how software components can interact.
+
+What is the difference between an API and a REST API?
+
+API is a broad term for an interface used for software interaction. REST API is a specific type of web API designed around REST principles.
+
+What are the most common HTTP methods used with REST APIs?
+
+Common methods include GET, POST, PUT, PATCH, and DELETE.
+
+Why is JSON commonly used with APIs?
+
+JSON is lightweight, structured, relatively easy for humans to read, and supported by many programming languages, making it convenient for exchanging data between applications.
+
+Can Python be used to work with APIs?
+
+Yes. Python provides libraries such as requests that can be used to send HTTP requests and process API responses.
+
+Are APIs secure?
+
+An API is not automatically secure simply because it is an API. Security depends on how the API is designed and implemented. Authentication, authorization, input validation, encryption, rate limiting, and other security controls can be used to protect APIs.
+
+Conclusion
+
+APIs are a fundamental part of modern software development. They provide a structured way for different applications, services, and systems to communicate with each other.
+
+In a typical API interaction, a client sends a request to an API, the server processes the request, and the API returns a response. REST APIs commonly use HTTP methods such as GET, POST, PUT, PATCH, and DELETE to interact with resources.
+
+Understanding APIs, HTTP methods, status codes, JSON, requests, and responses provides a strong foundation for anyone learning web development, backend development, cloud services, or software integration.
+
+For technical writers, understanding these concepts is equally valuable because API documentation requires the ability to explain technical processes accurately and clearly to a developer audience.
+
+Sources and Further Reading
+MDN Web Docs — HTTP overview and HTTP methods
+MDN Web Docs — HTTP response status codes
+RFC 9110 — HTTP Semantics
+Python documentation — urllib and HTTP-related functionality
+Requests documentation — Python HTTP library
+
+SOURCES AND FURTHER READING:
+The following sources were consulted for factual verification and additional technical reference:
+MDN Web Docs — HTTP Request Methods-[https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods?]
+MDN Web Docs — HTTP Response Status Codes -[https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status?]
+RFC 9110 — HTTP Semantics-[https://www.rfc-editor.org/rfc/rfc9110.html?]
+Requests Documentation — Quickstart-[https://requests.readthedocs.io/en/latest/user/quickstart/]
+JSONPlaceholder — Public REST API-[https://jsonplaceholder.dev/?]
+JSONPlaceholder — Getting Started Guide-[https://jsonplaceholder.dev/guide/getting-started?]
+
+Portfolio Metadata
+
+Primary Keyword: What is an API
+
+Secondary Keywords:
+
+API meaning
+What is an API in programming
+How APIs work
+API request and response
+REST API
+REST API methods
+HTTP methods
+GET POST PUT DELETE
+JSON API
+API in Python
+
+Suggested Meta Title:
+
+What Is an API? Beginner's Guide to APIs and REST APIs
+
+Suggested Meta Description:
+
+Learn what an API is, how APIs work, REST APIs, HTTP methods, status codes, JSON, API requests and responses, and how to call a public API using Python.
+
+Suggested URL Slug:
+
+what-is-an-api-[https://www.ibm.com/think/topics/api]
+
+Author Note
+This article was created as part of my Technical Content Writing Portfolio to demonstrate my ability to research technical concepts, simplify complex topics, structure educational content, and explain software concepts using practical examples.
 
 
 
