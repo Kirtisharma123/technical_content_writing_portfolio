@@ -18,7 +18,7 @@ databases, web technologies, and cloud computing.
 A beginner-friendly guide explaining APIs, REST APIs, HTTP methods,
 JSON, authentication, and API documentation.
 
-[Read Article](./api-guide/article.md)
+[Read Article] (api_guide)
 
 ### 2. Python vs Java
 
